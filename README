@@ -1,0 +1,7 @@
+aLogrec continuously records logcat logs to external storage. 
+
+The purpose of this utility is to provide a (near) infinite record of Android's logcat. Android's /dev/log device is only a ~50k window. This log can be scrolled in a matter of minutes on an active device. aLogrec provides a way to capture logcat over long periods: hours, or even days.
+
+Log records are written to external storage (typically /sdcard) under the folder alogrec, and with a file name that includes the timestamp which the log record started.
+
+WARNING: running this application prevents the device from sleeping. During this time, it performs clostly file I/O operations. This application will cause your device to consume significantly more battery than it would otherwise. It should be used under controlled conditions, and only for development purposes.
