@@ -10,8 +10,8 @@ import android.os.Environment;
 class LogFile {
 	private static final SimpleDateFormat LOG_FILE_FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd-HH-mm-ss");
-	private static final File DIR = new File(
-			Environment.getExternalStorageDirectory(), "alogrec");
+	static final File DIR = new File(Environment.getExternalStorageDirectory(),
+			"alogrec");
 
 	private File file;
 
@@ -21,9 +21,6 @@ class LogFile {
 	}
 
 	void create() throws IOException {
-		boolean exists = DIR.exists();
-		boolean mk = DIR.mkdirs();
-		
 		if (!DIR.exists() && !DIR.mkdirs()) {
 			throw new IOException("could not establish log directory: " + DIR);
 		}

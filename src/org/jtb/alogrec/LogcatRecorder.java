@@ -7,18 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Writer;
-import java.util.Date;
-import java.util.regex.Pattern;
 
 import android.content.Context;
-import android.os.Environment;
-import android.text.TextUtils;
 import android.util.Log;
 
 public class LogcatRecorder implements Runnable {
-	private static final File LOG_DIR = new File(
-			Environment.getExternalStorageDirectory() + File.separator
-					+ "alogcat");
 
 	private boolean running = false;
 	private Writer writer;

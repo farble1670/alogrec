@@ -3,23 +3,22 @@
     android:id="@+id/start_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="16dp"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="16dp" >
 
     <TextView
         style="@android:style/TextAppearance.Small"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/stop" />
+        android:text="@string/stop_message" />
 
     <TextView
-        android:id="@+id/log_file_text"        
+        android:id="@+id/log_file_text"
         style="@android:style/TextAppearance.Medium"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="/sdcard/alogrec/somelog.txt" />
+        android:gravity="center_horizontal" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,13 +30,13 @@
             android:id="@+id/stop_button"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
-            android:text="Stop" />
+            android:text="@string/stop" />
 
         <Button
             android:id="@+id/cancel_button"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
     </LinearLayout>
 
 </LinearLayout>

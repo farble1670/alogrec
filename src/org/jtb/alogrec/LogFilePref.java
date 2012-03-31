@@ -1,13 +1,9 @@
 package org.jtb.alogrec;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 
 class LogFilePref {
@@ -23,7 +19,11 @@ class LogFilePref {
 		if (!mPrefs.contains("logFile")) {
 			return null;
 		}
-		return new File(mPrefs.getString("logFile", null));		
+		String lf = mPrefs.getString("logFile", null);
+		if (lf == null) {
+			return null;
+		}
+		return new File(lf);		
 	}
 
 	void setFile(File f) {

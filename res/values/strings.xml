@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">aLogrec</string>
-    <string name="start">Log will be recorded into:</string>
-    <string name="ext">Could not access log directory. Is your external storage (SD card) mounted?</string>
-    <string name="stop">Log being recored into:</string>
-    <string name="fail">Failed to create log file at:</string>
-    
+    <string name="start_message">Log will be recorded into:</string>
+    <string name="ext_message">Could not access log directory. Is your external storage (SD card) mounted?</string>
+    <string name="stop_message">Log being recored into:</string>
+    <string name="fail_message">Failed to create log file at:</string>
+   	<string name="cancel">Cancel</string>
+   	<string name="record">Record</string>
+   	<string name="stop">Stop</string>
 </resources>

@@ -3,8 +3,8 @@
     android:id="@+id/ext_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="16dp" >
 
     <TextView
         android:id="@+id/info_text"
@@ -12,15 +12,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/fail" />
+        android:text="@string/fail_message" />
+
     <TextView
-        android:id="@+id/dir_text"
+        android:id="@+id/file_text"
         style="@android:style/TextAppearance.Medium"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="/sdcard/alogrec" />
-    
+        android:gravity="center_horizontal" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,6 +31,7 @@
             android:id="@+id/cancel_button"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
     </LinearLayout>
-</LinearLayout>
+
+</LinearLayout>

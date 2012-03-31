@@ -1,22 +1,12 @@
 package org.jtb.alogrec;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Date;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Environment;
 import android.os.IBinder;
-import android.util.Log;
 
 public class RecordService extends Service {
 	static final String EXTRA_START_RECORD = "START_WRITE";
@@ -46,7 +36,7 @@ public class RecordService extends Service {
 		if (recorder != null) {
 			recorder.setRunning(false);
 			recorder = null;
-		}
+		}	
 	}
 
 	private void start() {
@@ -72,9 +62,6 @@ public class RecordService extends Service {
 	}
 
 	private Notification getNotification() {
-		NotificationManager nm = (NotificationManager) this
-				.getSystemService(Context.NOTIFICATION_SERVICE);
-
 		int icon = android.R.drawable.stat_sys_download;
 		CharSequence tickerText = "aLogrec - Recording logs ...";
 
