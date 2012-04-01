@@ -2,6 +2,8 @@ package org.jtb.alogrec;
 
 import java.io.File;
 
+import org.jtb.alogrec.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
