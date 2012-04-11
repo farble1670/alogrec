@@ -1,6 +1,6 @@
 package org.jtb.alogrec;
 
-import org.jtb.alogrec.R;
+import org.jtb.alogrec.donate.R;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -20,7 +20,7 @@ public class RouterActivity extends Activity {
 				intent = new Intent(this, ExtActivity.class);
 			} else {
 				LogFile logFile = new LogFile();
-				new LogFilePref(this).setFile(logFile.getFile());
+				lfp.setFile(logFile.getFile());
 				try {
 					logFile.create();
 					intent = new Intent(this, StartActivity.class);
