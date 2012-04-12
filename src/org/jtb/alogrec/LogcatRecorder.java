@@ -15,7 +15,6 @@ public class LogcatRecorder implements Runnable {
 
 	private boolean running = false;
 	private Writer writer;
-	private boolean prepared = false;
 
 	public LogcatRecorder(Context context, File logFile) {
 		try {
@@ -24,14 +23,8 @@ public class LogcatRecorder implements Runnable {
 			Log.e("alogcat", "could not open file for writing: " + logFile);
 			return;
 		}
-
-		prepared = true;
 	}
-
-	public boolean isPrepared() {
-		return prepared;
-	}
-
+	
 	public boolean isRunning() {
 		return running;
 	}

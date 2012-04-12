@@ -1,22 +1,33 @@
 package org.jtb.alogrec;
 
 import java.io.File;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Environment;
 import android.os.IBinder;
+import android.util.Log;
 
 public class RecordService extends Service {
 	static final String EXTRA_START_RECORD = "START_WRITE";
 	static final String EXTRA_STOP_RECORD = "STOP_WRITE";
 	static final String EXTRA_LOG_FILE = "LOG_FILE";
 
+	private static final Executor EX = Executors.newSingleThreadExecutor();
+	private static final ScheduledExecutorService SEXS = Executors
+			.newScheduledThreadPool(1);
 	private static final int NOTIFY_ID = 100;
+	private static final int MAX_RETRIES = 10;
 
 	private LogcatRecorder recorder;
 	private File logFile;
+	private int tries;
 
 	@Override
 	public void onCreate() {
@@ -36,13 +47,34 @@ public class RecordService extends Service {
 		if (recorder != null) {
 			recorder.setRunning(false);
 			recorder = null;
-		}	
+		}
 	}
 
 	private void start() {
 		stop();
-		recorder = new LogcatRecorder(this, logFile);
-		new Thread(recorder).start();
+		if (!Environment.getExternalStorageState().equals(
+				Environment.MEDIA_MOUNTED)) {
+			if (tries > MAX_RETRIES) {
+				stopSelf();
+				Log.e("alogrec",
+						String.format(
+								"external storage not mounted after %d tries, cannot start",
+								tries - 1));
+				new LogFilePref(this).clearFile();
+				return;
+			}
+			tries++;
+			SEXS.schedule(new Runnable() {
+
+				@Override
+				public void run() {
+					start();
+				}
+			}, 4, TimeUnit.SECONDS);
+		} else {
+			recorder = new LogcatRecorder(this, logFile);
+			EX.execute(recorder);
+		}
 	}
 
 	@Override
@@ -52,6 +84,7 @@ public class RecordService extends Service {
 		} else if (intent.hasExtra(EXTRA_START_RECORD)) {
 			logFile = new File(intent.getStringExtra(EXTRA_LOG_FILE));
 			startForeground(NOTIFY_ID, getNotification());
+			tries = 0;
 			start();
 		} else if (intent.hasExtra(EXTRA_STOP_RECORD)) {
 			stopForeground(true);
@@ -78,10 +111,9 @@ public class RecordService extends Service {
 				notificationIntent, 0);
 
 		notification.setLatestEventInfo(this, contentTitle, contentText,
-				contentIntent);		
+				contentIntent);
 		return notification;
 	}
-
 
 	@Override
 	public IBinder onBind(Intent arg0) {
